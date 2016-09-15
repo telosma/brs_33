@@ -7,3 +7,6 @@
 $(function () {
     $('#side-menu').metisMenu();
 });
+$(document).ready(function () {
+    $('.alert').delay(3000).slideUp();
+});

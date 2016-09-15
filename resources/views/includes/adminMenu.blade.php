@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">{!! trans('admin.logo') !!}</a>
+        <a class="navbar-brand" href="{!! route('admin.home') !!}">{!! trans('admin.logo') !!}</a>
     </div>
     <ul class="nav navbar-top-links navbar-right">
         @include('includes.adminAlert')
@@ -29,16 +29,52 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href=""><i class="fa fa-dashboard fa-fw"></i> {!! trans('admin.dashboard') !!}</a>
+                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> {!! trans('admin.dashboard') !!}</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-group fa-fw"></i> {!! trans('admin.user_manage') !!}<span class="fa arrow"></span></a>
+                    <a href="#">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        {!! trans('admin.manage', ['name' => trans('admin.category')]) !!}
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">{!! trans('admin.add_new_user') !!}</a>
+                            <a href="{!! route('admin.category.create') !!}">
+                                {!! trans('admin.add_new', ['name' => trans('admin.category')]) !!}
+                            </a>
                         </li>
                         <li>
-                            <a href="#">{!! trans('admin.list_user') !!}</a>
+                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.category')]) !!}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        {!! trans('admin.manage', ['name' => trans('admin.book')]) !!}
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">{!! trans('admin.add_new', ['name' => trans('admin.book')]) !!}</a>
+                        </li>
+                        <li>
+                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.book')]) !!}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-group fa-fw"></i>
+                        {!! trans('admin.manage', ['name' => trans('admin.user')]) !!}
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">{!! trans('admin.add_new', ['name' => trans('admin.user')]) !!}</a>
+                        </li>
+                        <li>
+                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.user')]) !!}</a>
                         </li>
                     </ul>
                 </li>
