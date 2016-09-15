@@ -1,29 +1,30 @@
 {
-  "name": "Book review",
-  "description": "",
-  "main": "",
-  "authors": [
-    "Hoang Hoi <hoanghoi1310@gmail.com>"
-  ],
-  "license": "MIT",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "vendor/bower_dl",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "^3.1.0",
-    "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.6.3",
-    "datatables": "^1.10.12",
-    "datatables-plugins": "^1.10.12",
-    "metisMenu": "^2.5.2",
-    "datatables.net-select": "^1.2.0",
-    "datatables.net-select-dt": "^1.2.0",
-    "sb-admin-2": "*"
-  }
+    "name": "Book review",
+    "description": "",
+    "main": "",
+    "authors": [
+        "Hoang Hoi <hoanghoi1310@gmail.com>"
+    ],
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "vendor/bower_dl",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "^3.1.0",
+        "bootstrap": "^3.3.7",
+        "font-awesome": "fontawesome#^4.6.3",
+        "datatables": "^1.10.12",
+        "datatables-plugins": "^1.10.12",
+        "metisMenu": "^2.5.2",
+        "datatables.net-select": "^1.2.0",
+        "datatables.net-select-dt": "^1.2.0",
+        "sb-admin-2": "*",
+        "jquery-bar-rating": "^1.2.1"
+    }
 }

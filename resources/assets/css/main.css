@@ -1,0 +1,47 @@
+header {
+    display: block;
+}
+
+.header-container {
+    padding: 0.01em 16px;
+    margin-bottom: 50px;
+}
+
+.btn, .btn-block {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 6px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none!important;
+    color: #fff;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.sidebar {
+    display: block;
+    float: left;
+    width: 250px;
+    height: 100%;
+    background: #333;
+}
+
+.sidebar-nav-item-icon {
+    padding-right: 5px;
+}
+
+.containter {
+    margin-left: 300px;
+}
+
+.book-list {
+    display: inline;
+}
+
+.book-list li {
+    list-style: none;
+}
