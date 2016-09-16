@@ -12,14 +12,13 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">@yield('main-title')</h1>
+                        <h1 class="page-header">@yield('main_title')</h1>
                     </div>
                 </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">@yield('sub-title')</div>
                             <div class="panel-body">
                                 @include('includes.error')
                                 @include('includes.message')
