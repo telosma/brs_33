@@ -1,6 +1,6 @@
 @extends('layouts.usermaster')
 
-@section('navbar-top')
+@section('header')
 
 @include('includes.header')
 
@@ -50,7 +50,7 @@
                             <li><a href="#">item 1.5.1</a></li>
                             <li><a href="#">item 1.5.2</a></li>
                             <li><a href="#">item 1.5.3</a></li>
-                             <li><a href="#">item 1.5.4</a></li>
+                            <li><a href="#">item 1.5.4</a></li>
                         </ul>
                     </li>
                 </ul>

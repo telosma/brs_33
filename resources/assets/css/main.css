@@ -45,3 +45,50 @@ header {
 .book-list li {
     list-style: none;
 }
+
+#dropdown-user {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    margin: 10px 10px auto auto;
+}
+
+.profile .profile-header {
+    height: 26px;
+    padding: 16px 0;
+    font-size: 24px;
+    font-family: Roboto, sans-serif;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background-color: #f44336;
+}
+
+.profile .show-profile {
+    border-top: 1px solid #DDD;
+}
+
+.profile .show-profile .row {
+    border-bottom: 1px solid #f44336;
+    padding: 8px;
+}
+
+.profile .show-profile .row .cell {
+    box-sizing: border-box;
+}
+
+.profile .avatar {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.profile .avatar img {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
