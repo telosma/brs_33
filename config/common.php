@@ -8,6 +8,6 @@ return [
     'flash_level' => [
         'success' => 'success',
         'info' => 'info',
-        'warning' => 'warning',        
+        'warning' => 'warning',
     ],
 ];

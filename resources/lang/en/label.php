@@ -9,5 +9,5 @@ return [
     'numpage' => 'Page number',
     'rate' => 'Rate',
     'favorite' => 'Favorite',
-    'all' => 'All'
+    'all' => 'All',
 ];

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [
@@ -25,5 +25,34 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             'create',
             'store',
         ],
+    ]);
+});
+
+Route::group(['middleware' => ['web']], function() {
+    Route::get('signup', [
+        'uses' => 'AuthUserController@getSignup',
+        'as' => 'getSignup'
+    ]);
+
+    Route::get('signin', [
+        'uses' => 'AuthUserController@getSignin',
+        'as' => 'getSignin'
+    ]);
+
+    Route::group(['middleware' => 'auth', 'prefix' => 'user'], function() {
+        Route::get('signout', [
+            'uses' => 'AuthUserController@getSignout',
+            'as' => 'signout'
+        ]);
+    });
+
+    Route::post('signup', [
+        'uses' => 'AuthUserController@postSignup',
+        'as' => 'signup'
+    ]);
+
+    Route::post('signin', [
+        'uses' => 'AuthUserController@postSignin',
+        'as' => 'signin'
     ]);
 });

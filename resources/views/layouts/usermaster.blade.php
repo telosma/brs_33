@@ -12,7 +12,7 @@
     </head>
     <body>
 
-        @yield('navbar-top')
+        @yield('header')
         @yield('content')
         
         {{ Html::script('js/jquery.min.js') }}
@@ -21,5 +21,6 @@
         {{ Html::script('js/jquery.barrating.min.js') }}
         {{ Html::script('js/app.js') }}
 
+        @yield('script')
     </body>
 </html>
