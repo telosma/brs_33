@@ -24,8 +24,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         'only' => [
             'create',
             'store',
+            'index',
         ],
     ]);
+    Route::group(['prefix' => 'category/ajax'], function() {
+        Route::get('list', ['uses' => 'CategoryController@ajaxList', 'as' => 'admin.category.ajaxList']);
+        Route::delete('delete', ['uses' => 'CategoryController@ajaxDelete', 'as' => 'admin.category.ajaxDelete']);
+        Route::post('update', ['uses' => 'CategoryController@ajaxUpdate', 'as' => 'admin.category.ajaxUpdate']);
+    });
 });
 
 Route::group(['middleware' => ['web']], function() {

@@ -44,7 +44,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.category')]) !!}</a>
+                            <a href="{!! route('admin.category.index') !!}">
+                                {!! trans('admin.list', ['name' => trans('admin.category')]) !!}
+                            </a>
                         </li>
                     </ul>
                 </li>

@@ -7,6 +7,7 @@ return [
     'manage' => ':Name manage',
     'add_new' => 'Add new :name',
     'list' => 'List :name',
+    'update' => 'Update :name',
     'user' => 'user',
     'category' => 'category',
     'book' => 'book',
@@ -15,4 +16,12 @@ return [
     'create' => 'Create :name',
     'save' => 'Save',
     'home' => 'Home',
+    'response' => [
+        'delete' => 'Delete :num/:sum field :result!',
+        'update' => 'Update :result!',
+    ],
+    'result' => [
+        'success' => 'success',
+        'fail' => 'fail',
+    ],
 ];
