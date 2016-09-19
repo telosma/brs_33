@@ -3,7 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+function message(id, s, m) {
+    $(id).removeClass();
+    $(id).addClass('alert alert-' + s);
+    $(id).html(m);
+    $(id).slideDown();
+    $(id).delay(3000).slideUp();
+}
 $(function () {
     $('#side-menu').metisMenu();
 });

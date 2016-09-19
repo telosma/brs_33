@@ -25,6 +25,9 @@
         "datatables.net-select": "^1.2.0",
         "datatables.net-select-dt": "^1.2.0",
         "sb-admin-2": "*",
-        "jquery-bar-rating": "^1.2.1"
+        "jquery-bar-rating": "^1.2.1",
+        "datatables.net-buttons": "^1.2.2",
+        "datatables.net-buttons-dt": "^1.2.2",
+        "jquery-serialize-object": "^2.5.0"
     }
 }
