@@ -10,4 +10,5 @@ return [
     'rate' => 'Rate',
     'favorite' => 'Favorite',
     'all' => 'All',
+    'posted' => 'Posted at',
 ];

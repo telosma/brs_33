@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 <div class="col-md-6 col-md-offset-3">
     @include('includes.error')
     @include('includes.message')
@@ -33,4 +34,5 @@
         </div>
     {!! Form::close() !!}
 </div>
+
 @endsection

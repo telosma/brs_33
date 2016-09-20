@@ -69,3 +69,17 @@ Route::group(['middleware' => ['web']], function() {
         'as' => 'signin'
     ]);
 });
+
+Route::resource('users', 'UserController');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('profile-preview', [
+        'uses' => 'UserController@getEditProfile',
+        'as' => 'getEditProfile'
+    ]);
+
+    Route::post('profile-preview', [
+        'uses' => 'UserController@postUpdateProfile',
+        'as' => 'updateProfile'
+    ]);
+});

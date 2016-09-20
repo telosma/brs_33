@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
+use Image;
+use File;
 
 class User extends Authenticatable
 {
@@ -78,5 +80,30 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function setAvatarLinkAttribute($avatar)
+    {
+        $imgFolder = config('upload.image_upload');
+        if (!File::isDirectory($imgFolder)) {
+            File::makeDirectory($imgFolder, 775, true);
+        }
+        if (is_null($avatar)) {
+            if (empty($this->avatar_link)) {
+                $this->attributes['avatar_link'] = config('upload.default');
+            }
+        } else {
+            $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+            if (Image::make($avatar->getRealPath())->resize(config('upload.default_size'), config('upload.default_size'))->save(config('upload.image_upload') . $fileName)) {
+                return $this->attributes['avatar_link'] = $fileName;
+            } else {
+                $this->attributes['avatar_link'] = $this->avatar_link;
+            }
+        }
+    }
+    protected $appends = ['gender_name'];
+    public function getGenderNameAttribute()
+    {
+        return $this->attributes['gender'] ? trans('user.male') : trans('user.female');
     }
 }

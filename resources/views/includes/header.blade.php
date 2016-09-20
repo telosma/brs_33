@@ -4,15 +4,15 @@
             <a class="navbar-brand" href="{{ route('home') }}">{{ trans('label.brand') }}</a>
         </div>
         @if (Auth::check())
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right user-header">
                 <li>
-                    <div class="dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
-                        <span class="glyphicon glyphicon-user"></span>
+                    <div class="dropdown-toggle dropdown-user" data-toggle="dropdown">
+                        <img src="{{ asset(config('upload.image_upload') . Auth::user()->avatar_link) }}" alt="avt-img">
                         {{ Auth::user()->name }}
                         <span class="caret"></span>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a href="#">{{ trans('user.profile') }}</a></li>
+                        <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ trans('user.profile.label') }}</a></li>
                         <li><a href="#">{{ trans('user.timeline') }}</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('signout') }}">{{ trans('user.logout') }}</a></li>
