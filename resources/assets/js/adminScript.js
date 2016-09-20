@@ -16,3 +16,12 @@ $(function () {
 $(document).ready(function () {
     $('.alert').delay(3000).slideUp();
 });
+var addNewImage = function (input, img) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(img).attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
