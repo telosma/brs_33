@@ -22,7 +22,7 @@ class AuthUserController extends Controller
 
     public function postSignup(SignupRequest $request)
     {
-        $params = $request->only('gender', 'name', 'email', 'password');
+        $params = $request->only('gender', 'name', 'email', 'password', 'avatar_link');
         $user = User::create($params);
         if (!empty($user)) {
             return redirect()->back()->with([
