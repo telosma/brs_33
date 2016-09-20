@@ -32,6 +32,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('delete', ['uses' => 'CategoryController@ajaxDelete', 'as' => 'admin.category.ajaxDelete']);
         Route::post('update', ['uses' => 'CategoryController@ajaxUpdate', 'as' => 'admin.category.ajaxUpdate']);
     });
+    Route::resource('book', 'BookController', [
+        'only' => [
+            'create',
+            'store',
+            'index',
+        ],
+    ]);
 });
 
 Route::group(['middleware' => ['web']], function() {
