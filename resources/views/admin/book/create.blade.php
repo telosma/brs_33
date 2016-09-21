@@ -86,7 +86,11 @@
                 <div class="form-group">
                     {!! Form::label('published_at', trans('book.published_at'), ['class' => 'col-md-2 control-label']) !!}
                     <div class="col-md-8">
-                        {!! Form::date('published_at', \Carbon\Carbon::now()) !!}
+                        {!! Form::text(
+                            'published_at',
+                            \Carbon\Carbon::now()->format(config('common.publish_date_format')),
+                            ['placeholder' => trans('book.date_format')]
+                        ) !!}
                     </div>
                 </div>
             </div>

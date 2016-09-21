@@ -30,6 +30,7 @@ gulp.task("copyfiles", function () {
         ['vendor/bower_dl/jquery-bar-rating/dist/jquery.barrating.min.js', publicDest[0]],
         ['vendor/bower_dl/datatables.net-buttons/js/dataTables.buttons.min.js', publicDest[0]],
         ['vendor/bower_dl/jquery-serialize-object/dist/jquery.serialize-object.min.js', publicDest[0]],
+        ['vendor/bower_dl/jquery-form/jquery.form.js', publicDest[0]],
         //cssCopyPath
         ['vendor/bower_dl/metisMenu/dist/metisMenu.min.css', publicDest[1]],
         ['vendor/bower_dl/bootstrap/dist/css/bootstrap.min.css', publicDest[1]],
