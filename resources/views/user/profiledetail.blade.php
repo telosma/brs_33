@@ -77,7 +77,7 @@
                         ) }}
                     </div>
                 </div>
-                {{ Form::submit(trans('user.update'), ['class' => 'btn btn-success']) }}
+                {{ Form::submit(trans('user.update'), ['class' => 'btn btn-success col-md-offset-2']) }}
             </div>
         {{ Form::close() }}
     </div>

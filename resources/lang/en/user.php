@@ -3,6 +3,7 @@
 return [
     'msg_success_signup' => 'Success Registed',
     'msg_unsuccess_update_profile' => 'Profile update failed',
+    'msg_unsuccess_follow_user' => 'Can not follow',
     'res_title' => 'Register account',
     'logout' => 'Logout',
     'register' => 'Register',
@@ -28,5 +29,6 @@ return [
         'reviews' => 'reviews',
         'follow' => 'Follow',
         'unfollow' => 'UnFollow',
+        'not_exist' => 'User does not exist',
     ],
 ];

@@ -17,11 +17,11 @@
         </div>
         <div class="col-md-6 col-lg-6 content-profile">
             <p class="name-profile">{{ $userInfo->name }}</p>
-            @if (Auth::check())
-                @if (Auth::user()->id == $userInfo->id)
-                    <a href="{{ route('getEditProfile') }}" class="btn btn-edit pull-right">{{ trans('user.profile.edit') }}</a>
+            @if (!is_null($action))
+                @if ($action == trans('user.profile.edit'))
+                    <a href="{{ route('getEditProfile') }}" class="btn btn-edit pull-right">{{ $action }}</a>
                 @else
-                    <button class="btn btn-edit btn-follow pull-right">{{ trans('user.profile.follow') }}</button>
+                    <button class="btn btn-edit btn-follow pull-right">{{ $action }}</button>
                 @endif
             @endif
         </div>
@@ -32,11 +32,11 @@
             </a>
             <a href="#">
                 <p class="col-md-8">{{ trans('user.profile.following') }}</p>
-                <p class="col-md-4">10</p>
+                <p class="col-md-4">{{ $userInfo->followings_count }}</p>
             </a>
             <a href="#">
                 <p class="col-md-8">{{ trans('user.profile.follower') }}</p>
-                <p class="col-md-4">4</p>
+                <p class="col-md-4">{{ $userInfo->followers_count }}</p>
             </a>
         </div>
     </div>
@@ -80,5 +80,17 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+
+    <script>
+        var urlFollow = '{{ route('postFollowUser') }}';
+        var userId = '{{ $userInfo->id }}';
+        var redirectPath = '{{ route('home') }}';
+    </script>
+
+    {{ Html::script('js/ajaxFollowUser.js') }}
 
 @endsection
