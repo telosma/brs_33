@@ -17,4 +17,5 @@ return [
         'width' => '200',
     ],
     'date_format_book_image_file' => 'Y_m_d_H_i_s',
+    'publish_date_format' => 'd-m-Y',
 ];

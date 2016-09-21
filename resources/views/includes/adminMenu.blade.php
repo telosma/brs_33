@@ -58,10 +58,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">{!! trans('admin.add_new', ['name' => trans('admin.book')]) !!}</a>
+                            <a href="{!! route('admin.book.create') !!}">{!! trans('admin.add_new', ['name' => trans('admin.book')]) !!}</a>
                         </li>
                         <li>
-                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.book')]) !!}</a>
+                            <a href="{!! route('admin.book.index') !!}">{!! trans('admin.list', ['name' => trans('admin.book')]) !!}</a>
                         </li>
                     </ul>
                 </li>
