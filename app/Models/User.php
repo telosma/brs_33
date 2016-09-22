@@ -101,7 +101,9 @@ class User extends Authenticatable
             }
         }
     }
+
     protected $appends = ['gender_name'];
+
     public function getGenderNameAttribute()
     {
         return $this->attributes['gender'] ? trans('user.male') : trans('user.female');

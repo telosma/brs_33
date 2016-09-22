@@ -87,4 +87,9 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'UserController@postUpdateProfile',
         'as' => 'updateProfile'
     ]);
+
+    Route::post('postFollowUser', [
+        'uses' => 'UserController@postFollowUser',
+        'as' => 'postFollowUser'
+    ]);
 });
