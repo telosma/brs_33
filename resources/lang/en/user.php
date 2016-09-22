@@ -29,4 +29,13 @@ return [
         'follow' => 'Follow',
         'unfollow' => 'UnFollow',
     ],
+    'reviews' => 'Reviews',
+    'write' => 'Write user :name',
+    'create_user' => 'Create new user',
+    'update_user' => 'Update user',
+    'read_books' => 'Reads',
+    'reading_books' => 'Readings',
+    'reset_password' => 'Reset password',
+    'confirm_reset_password' => 'Do you want to reset password for all user was selected?',
+    
 ];

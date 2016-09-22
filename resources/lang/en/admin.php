@@ -18,7 +18,9 @@ return [
     'home' => 'Home',
     'response' => [
         'delete' => 'Delete :num/:sum field :result!',
+        'reset_password' => 'Reset password :num/:sum field :result!',
         'update' => 'Update :result!',
+        'create' => 'Create :name :result!',
     ],
     'result' => [
         'success' => 'success',

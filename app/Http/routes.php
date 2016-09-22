@@ -44,6 +44,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('delete', ['uses' => 'BookController@ajaxDelete', 'as' => 'admin.book.ajaxDelete']);
         Route::post('update', ['uses' => 'BookController@ajaxUpdate', 'as' => 'admin.book.ajaxUpdate']);
     });
+    Route::get('user', [ 'uses' => 'UserController@index', 'as' => 'admin.user.index']);
+    Route::group(['prefix' => 'user/ajax'], function() {
+        Route::get('list', ['uses' => 'UserController@ajaxList', 'as' => 'admin.user.ajaxList']);
+        Route::delete('delete', ['uses' => 'UserController@ajaxDelete', 'as' => 'admin.user.ajaxDelete']);
+        Route::post('update', ['uses' => 'UserController@ajaxUpdate', 'as' => 'admin.user.ajaxUpdate']);
+        Route::post('create', ['uses' => 'UserController@ajaxCreate', 'as' => 'admin.user.ajaxCreate']);
+        Route::post('resetPassword', [
+            'uses' => 'UserController@ajaxResetPassword',
+            'as' => 'admin.user.ajaxResetPassword'
+        ]);
+    });
 });
 
 Route::group(['middleware' => ['web']], function() {
