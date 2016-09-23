@@ -59,17 +59,17 @@ class User extends Authenticatable
 
     public function readBooks()
     {
-        return $this->belongsToMany('App\Models\Book', 'favorites')->where('action', config('common.read'));
+        return $this->belongsToMany('App\Models\Book', 'marks')->where('action', config('common.read'));
     }
 
     public function readingBooks()
     {
-        return $this->belongsToMany('App\Models\Book', 'favorites')->where('action', config('common.reading'));
+        return $this->belongsToMany('App\Models\Book', 'marks')->where('action', config('common.reading'));
     }
 
     public function bookRequests()
     {
-        return $this->belongsToMany('App\Models\Book', 'book_request');
+        return $this->belongsToMany('App\Models\Book', 'book_requests');
     }
 
     public function setNameAttribute($value)
@@ -107,5 +107,28 @@ class User extends Authenticatable
     public function getGenderNameAttribute()
     {
         return $this->attributes['gender'] ? trans('user.male') : trans('user.female');
+    }
+
+    public function delete()
+    {
+        try {
+            parent::delete();
+            $this->reviews()->delete();
+            $this->deleteAvatar();
+
+            return true;
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+
+    public function deleteAvatar()
+    {
+        if (isset($this->attributes['avatar_link']) && $this->attributes['avatar_link'] != config('upload.default')) {
+            $pathAvatarFile = config('upload.image_upload') . $this->attributes['avatar_link'];
+            if (File::exists($pathAvatarFile)) {
+                File::delete($pathAvatarFile);
+            }
+        }
     }
 }

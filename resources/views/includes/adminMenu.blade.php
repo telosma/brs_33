@@ -66,19 +66,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{!! route('admin.user.index') !!}">
                         <i class="fa fa-group fa-fw"></i>
                         {!! trans('admin.manage', ['name' => trans('admin.user')]) !!}
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">{!! trans('admin.add_new', ['name' => trans('admin.user')]) !!}</a>
-                        </li>
-                        <li>
-                            <a href="#">{!! trans('admin.list', ['name' => trans('admin.user')]) !!}</a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>
