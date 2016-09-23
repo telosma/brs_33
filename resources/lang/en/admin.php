@@ -12,6 +12,7 @@ return [
     'category' => 'category',
     'book' => 'book',
     'book_request' => 'book request',
+    'review' => 'review',
     'read_all_message' => 'Read All Messages',
     'user_send_request' => 'Send request buy a book ',
     'create' => 'Create :name',

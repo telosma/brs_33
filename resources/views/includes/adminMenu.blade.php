@@ -29,7 +29,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> {!! trans('admin.dashboard') !!}</a>
+                    <a href="{!! route('admin.home') !!}"><i class="fa fa-dashboard fa-fw"></i> {!! trans('admin.dashboard') !!}</a>
                 </li>
                 <li>
                     <a href="#">
@@ -75,6 +75,12 @@
                     <a href="{!! route('admin.user.index') !!}">
                         <i class="fa fa-group fa-fw"></i>
                         {!! trans('admin.manage', ['name' => trans('admin.user')]) !!}
+                    </a>
+                </li>
+                <li>
+                    <a href="{!! route('admin.review.index') !!}">
+                        <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                        {!! trans('admin.list', ['name' => trans('admin.review')]) !!}
                     </a>
                 </li>
             </ul>

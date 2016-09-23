@@ -61,6 +61,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             'as' => 'admin.user.ajaxResetPassword'
         ]);
     });
+    Route::get('review', ['uses' => 'ReviewController@index', 'as' => 'admin.review.index']);
+    Route::group(['prefix' => 'review/ajax'], function() {
+        Route::get('list', ['uses' => 'ReviewController@ajaxList', 'as' => 'admin.review.ajaxList']);
+        Route::delete('delete', ['uses' => 'ReviewController@ajaxDelete', 'as' => 'admin.review.ajaxDelete']);
+    });
 });
 
 Route::group(['middleware' => ['web']], function() {
