@@ -22,4 +22,6 @@ return [
         'male' => 1,
         'female' => 0,
     ],
+    'date_format_created' => 'd-m-Y, g:iA',
+    'review_min_text_length' => '300',
 ];

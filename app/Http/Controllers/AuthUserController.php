@@ -17,7 +17,11 @@ class AuthUserController extends Controller
 
     public function getSignin()
     {
-        return view('user.signin');
+        if (!Auth::check()) {
+            return view('user.signin');
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     public function postSignup(SignupRequest $request)

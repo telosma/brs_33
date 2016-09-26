@@ -8,9 +8,9 @@
 
 @section('content')
 
+@include('includes.notification')
 <div class="profile view-profile col-md-8 col-md-offset-2">
     @include('includes.error')
-    @include('includes.message')
     <div class="profile-header">
         {{ trans('user.profile.label') }}
         <i class="fa fa-pencil-square-o icon-edit" data-toggle="tooltip" title="Edit profile"></i>
@@ -38,12 +38,12 @@
         {{ trans('user.update_profile') }}
     </div>
     <div class="show-profile row">
-        {{ Form::open(['route' => 'updateProfile', 'method' => 'post', 'files' => true]) }}
+        {{ Form::open(['route' => 'updateProfile', 'method' => 'post', 'files' => true, 'class' => 'form-update-profile']) }}
             <div class="cell col-md-3">
                 <div class="avatar">
-                    <img src="{{ asset(config('upload.image_upload') . $user->avatar_link) }}" alt="avatar-img">
+                    <img id="preview_avatar_img" src="{{ asset(config('upload.image_upload') . $user->avatar_link) }}" alt="avatar-img">
                 </div>
-                {{ Form::file('avatar_link', null) }}
+                {{ Form::file('avatar_link', ['class' => 'avatar_link', 'id' => 'file_avatar']) }}
             </div>
             <div class="cell col-md-9">
                 <div class="row form-group">
@@ -52,9 +52,9 @@
                         <span class="required"></span>
                     </div>
                     <div class="cell cell-edit col-md-6">
-                    	{{ Form::text('name', Auth::user()->name, ['class' => 'form-control']) }}
-                    	<span class="highlight"></span>
-                    	<span class="bar"></span>
+                        {{ Form::text('name', Auth::user()->name, ['class' => 'form-control name']) }}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -77,7 +77,7 @@
                         ) }}
                     </div>
                 </div>
-                {{ Form::submit(trans('user.update'), ['class' => 'btn btn-success col-md-offset-2']) }}
+                {{ Form::submit(trans('user.update'), ['class' => 'btn btn-success col-md-offset-2 btn-update']) }}
             </div>
         {{ Form::close() }}
     </div>
