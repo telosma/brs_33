@@ -73,6 +73,7 @@ class Book extends Model
             parent::delete();
             $this->reviews()->delete();
             $this->deleteFileBookImage();
+            $this->bookRequests()->delete();
 
             return true;
         } catch (Exception $ex) {
@@ -108,5 +109,10 @@ class Book extends Model
     public function rates()
     {
         return $this->hasMany('App\Models\Rate', 'book_id');
+    }
+
+    public function bookRequests()
+    {
+        return $this->hasMany('App\Models\BookRequest', 'book_id');
     }
 }

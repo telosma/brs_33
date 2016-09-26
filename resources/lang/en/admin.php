@@ -11,6 +11,7 @@ return [
     'user' => 'user',
     'category' => 'category',
     'book' => 'book',
+    'book_request' => 'book request',
     'read_all_message' => 'Read All Messages',
     'user_send_request' => 'Send request buy a book ',
     'create' => 'Create :name',
@@ -18,6 +19,7 @@ return [
     'home' => 'Home',
     'response' => [
         'delete' => 'Delete :num/:sum field :result!',
+        'accept' => 'Accept :num/:sum request :result!',
         'reset_password' => 'Reset password :num/:sum field :result!',
         'update' => 'Update :result!',
         'create' => 'Create :name :result!',

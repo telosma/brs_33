@@ -115,6 +115,7 @@ class User extends Authenticatable
             parent::delete();
             $this->reviews()->delete();
             $this->deleteAvatar();
+            $this->hasMany('App\Models\BookRequest', 'user_id')->delete();
 
             return true;
         } catch (Exception $ex) {

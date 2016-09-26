@@ -66,6 +66,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{!! route('admin.bookRequest.index') !!}">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        {!! trans('admin.manage', ['name' => trans('admin.book_request')]) !!}
+                    </a>
+                </li>
+                <li>
                     <a href="{!! route('admin.user.index') !!}">
                         <i class="fa fa-group fa-fw"></i>
                         {!! trans('admin.manage', ['name' => trans('admin.user')]) !!}
