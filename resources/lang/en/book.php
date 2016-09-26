@@ -15,4 +15,8 @@ return [
     'load_categories_error' => 'Load categories error:',
     'date_format' => 'dd-mm-yyyy',
     'comments' => 'Comments',
+    'book_image' => 'Book image',
+    'rate_point' => 'Rate point',
+    'favorites' => 'Favorites',
+    'details' => 'Book details',
 ];

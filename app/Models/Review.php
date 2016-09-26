@@ -37,6 +37,11 @@ class Review extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
+    public function getContentAttribute($value)
+    {
+        return nl2br($value);
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format(config('common.publish_date_format'));
