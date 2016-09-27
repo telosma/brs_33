@@ -16,7 +16,6 @@ header {
     overflow: hidden;
     text-decoration: none!important;
     color: #fff;
-    background-color: #000;
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
@@ -88,21 +87,19 @@ header {
 }
 
 .profile .avatar {
+    display: block;
     width: 150px;
     height: 150px;
     margin: 0 auto;
-    margin-top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    margin-bottom: -70px;
+    margin-top: 50px;
 }
 
-.profile .avatar img {
+.avatar img {
     position: relative;
-    top: 50%;
+    margin-top: 50px;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    border-radius: 50%;
+    border-radius: 50% 50% 0 50%;
     width: 100px;
 }
 
@@ -164,11 +161,6 @@ header {
     margin-top: 45px;
     margin-bottom: 35px;
     font-size: 14px;
-}
-
-.box-prifile .row {
-    padding-left: 15px;
-    background-color: 
 }
 
 .box-profile .row .content-profile {
@@ -315,4 +307,174 @@ div .container .box-title {
 
 .box-profile .content-profile .btn-edit:hover {
     background-color: #3c763d;
+}
+
+/*
+    style for review.create
+*
+*/
+.preview-book {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: rgba(0,0,0,.075);
+}
+
+.preview-book img {
+    margin: 10px auto;
+}
+
+/*
+    Notification
+*/
+.notification {
+    position: fixed;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    border-radius: 4px;
+    font-weight: 700;
+    align-items: stretch;
+    perspective: 1000px;
+    opacity: 0.6;
+    z-index: 2016;
+}
+
+.notification .icon {
+    padding: 20px;
+    color: white;
+    border-radius: 4px 0px 0px 4px;
+    overflow: hidden;
+}
+
+.notification .text {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.notification:hover {
+    opacity: 1;
+}
+
+.success-notification .icon {
+    background: #0097A7;
+}
+
+.success-notification .text {
+    background: rgb(51, 153, 255);
+}
+
+.danger-notification .icon {
+    background: rgb(255, 0, 0);
+}
+
+.danger-notification .text {
+    background: rgb(255, 102, 102);
+}
+
+/*
+*
+    review.show
+*
+*/
+.post-preview > a {
+    color: #333333;
+}
+
+.post-preview > a:hover,
+.post-preview > a:focus {
+    text-decoration: none;
+    color: #0085A1;
+}
+
+.post-preview > a > .post-title {
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.post-preview > a > .post-subtitle {
+    margin: 0;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.post-preview > .post-meta {
+    color: #777777;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.post-preview > .post-meta > a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.post-preview > .post-meta > a:hover,
+.post-preview > .post-meta > a:focus {
+    color: #0085A1;
+    text-decoration: underline;
+}
+
+@media only screen and (min-width: 768px) {
+    .post-preview > a > .post-title {
+        font-size: 36px;
+    }
+}
+
+.comment{
+    margin-bottom: 25px;
+}
+
+.user-ava{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+}
+
+.user-name{
+    float: left;
+    margin-left: 10px;
+}
+
+.user-name>h4{
+    margin: 5px;
+}
+
+.comment-time{
+    font-size: 12px;
+    font-style: italic;
+    color: #aaa;
+}
+
+.comment-body{
+    clear: both;
+    font-size: 16px;
+    margin-left: 50px;
+    line-height: 1.3em;
+}
+
+.comment-title{
+    margin-bottom: 30px;
+}
+
+.comment-title>span{
+    margin-right: 15px;
+}
+
+.glyphicon.glyphicon-send{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+}
+
+.glyphicon.glyphicon-send:hover{
+   cursor: pointer;
+   font-size: 28px;
 }

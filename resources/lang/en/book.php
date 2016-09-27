@@ -7,10 +7,12 @@ return [
     'author' => 'Author',
     'num_page' => 'Number of pages',
     'description' => 'Description',
+    'published_at' => 'Published at',
     'write' => 'Write :name for book...',
     'choose_book_image' => 'Choose book image...',
     'published_at' => 'Publish at',
     'pages' => 'Pages',
     'load_categories_error' => 'Load categories error:',
     'date_format' => 'dd-mm-yyyy',
+    'comments' => 'Comments',
 ];
