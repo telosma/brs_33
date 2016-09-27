@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\UserFollow;
+use App\Models\Review;
+use App\Models\LikeEvent;
 use App\Providers\UserService;
 use Auth;
 
@@ -48,11 +50,14 @@ class UserController extends Controller
             $params = $request->only(['name', 'gender', 'avatar_link']);
             $user->update($params);
 
-            return redirect()->route('getEditProfile');
+            return redirect()->route('getEditProfile')->with([
+                config('common.flash_message') => trans('user.msg_success_update_profile'),
+                config('common.flash_level_key') => config('common.flash_level.success')
+            ]);
         } catch (\Exception $e) {
             return redirect()->route('getEditProfile')->with([
                 config('common.flash_message') => trans('user.msg_unsuccess_update_profile'),
-                config('common.flash_level_key') => config('common.flash_level.warning')
+                config('common.flash_level_key') => config('common.flash_level.danger')
             ]);
         }
     }
@@ -72,12 +77,39 @@ class UserController extends Controller
             UserFollow::create($params);
             $action = trans('user.profile.unfollow');
         }
+
         $userFollow = User::withCount('followers', 'followings')->find($request->userId);
+
         return response()->json([
             'changeAction' => $action,
             'num_followings' => $userFollow->followings_count,
             'num_followers' => $userFollow->followers_count,
             200
+        ]);
+    }
+
+    public function postLikeReview(Request $request)
+    {
+        if (!Review::find($request->reviewId)) {
+            return response()->json(['err' => trans('user.review.not_exist'), 404]);
+        }
+
+        $currentUserId = Auth::user()->id;
+        $reviewId = $request->reviewId;
+        if (UserService::checkLiked($reviewId, $currentUserId)) {
+            $likeAction = LikeEvent::deleteLike($request->reviewId, $currentUserId) ? trans('user.review.like') : trans('user.profile.unlike');
+        } else {
+            $params['user_id'] = $currentUserId;
+            $params['review_id'] = $reviewId;
+            LikeEvent::create($params);
+            $likeAction = trans('user.review.unlike');
+        }
+
+        $review = Review::withCount('likeEvents')->find($reviewId);
+
+        return response()->json([
+            'likeAction' => $likeAction,
+            'num_likes' => $review->like_events_count,
         ]);
     }
 }

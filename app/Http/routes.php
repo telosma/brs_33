@@ -68,34 +68,32 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     });
 });
 
-Route::group(['middleware' => ['web']], function() {
-    Route::get('signup', [
-        'uses' => 'AuthUserController@getSignup',
-        'as' => 'getSignup'
-    ]);
+Route::get('signup', [
+    'uses' => 'AuthUserController@getSignup',
+    'as' => 'getSignup'
+]);
 
-    Route::get('signin', [
-        'uses' => 'AuthUserController@getSignin',
-        'as' => 'getSignin'
-    ]);
+Route::get('signin', [
+    'uses' => 'AuthUserController@getSignin',
+    'as' => 'getSignin'
+]);
 
-    Route::group(['middleware' => 'auth', 'prefix' => 'user'], function() {
-        Route::get('signout', [
-            'uses' => 'AuthUserController@getSignout',
-            'as' => 'signout'
-        ]);
-    });
-
-    Route::post('signup', [
-        'uses' => 'AuthUserController@postSignup',
-        'as' => 'signup'
-    ]);
-
-    Route::post('signin', [
-        'uses' => 'AuthUserController@postSignin',
-        'as' => 'signin'
+Route::group(['middleware' => 'auth', 'prefix' => 'user'], function() {
+    Route::get('signout', [
+        'uses' => 'AuthUserController@getSignout',
+        'as' => 'signout'
     ]);
 });
+
+Route::post('signup', [
+    'uses' => 'AuthUserController@postSignup',
+    'as' => 'signup'
+]);
+
+Route::post('signin', [
+    'uses' => 'AuthUserController@postSignin',
+    'as' => 'signin'
+]);
 
 Route::resource('users', 'UserController');
 
@@ -114,4 +112,11 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'UserController@postFollowUser',
         'as' => 'postFollowUser'
     ]);
+
+    Route::get('/reviews/create/{book_id}', [
+        'uses' => 'ReviewController@getCreateReview',
+        'as' => 'getCreateReview'
+    ]);
 });
+
+Route::resource('reviews', 'ReviewController');

@@ -47,6 +47,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof ModelNotFoundException) {
+            return response()->view('errors.dbNotFound', [], 500);
+        }
+
         return parent::render($request, $e);
     }
 }

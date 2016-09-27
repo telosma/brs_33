@@ -11,4 +11,7 @@ return [
     'favorite' => 'Favorite',
     'all' => 'All',
     'posted' => 'Posted at',
+    'title.title_notfound' => 'Not Found',
+    'db_notfound' => 'Database not found',
+    'right_back' => 'Please right back',
 ];
