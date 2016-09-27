@@ -108,7 +108,7 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'updateProfile'
     ]);
 
-    Route::post('postFollowUser', [
+    Route::post('follow-user', [
         'uses' => 'UserController@postFollowUser',
         'as' => 'postFollowUser'
     ]);
@@ -116,6 +116,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/reviews/create/{book_id}', [
         'uses' => 'ReviewController@getCreateReview',
         'as' => 'getCreateReview'
+    ]);
+
+    Route::post('like-review', [
+        'uses' => 'UserController@postLikeReview',
+        'as' => 'postLikeReview'
     ]);
 });
 

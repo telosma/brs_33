@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Review;
 use App\Models\Book;
+use App\Providers\UserService;
 use Auth;
 
 class ReviewController extends Controller
@@ -40,7 +41,8 @@ class ReviewController extends Controller
 
     public function show($id)
     {
-        $review = Review::withCount(['comments', 'usersLikes'])->findOrFail($id);
+        $review = Review::withCount(['comments', 'usersLikes', 'likeEvents'])->findOrFail($id);
+        $review['liked'] = UserService::checkLiked($id, Auth::user()->id);
 
         return view('user.review.show', ['review' => $review]);
     }

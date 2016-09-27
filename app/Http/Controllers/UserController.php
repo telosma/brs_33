@@ -97,7 +97,7 @@ class UserController extends Controller
         $currentUserId = Auth::user()->id;
         $reviewId = $request->reviewId;
         if (UserService::checkLiked($reviewId, $currentUserId)) {
-            $likeAction = LikeEvent::deleteLike($request->reviewId, $currentUserId) ? trans('user.review.like') : trans('user.profile.unlike');
+            $likeAction = LikeEvent::deleteLike($request->reviewId, $currentUserId) ? trans('user.review.like') : trans('user.review.unlike');
         } else {
             $params['user_id'] = $currentUserId;
             $params['review_id'] = $reviewId;
@@ -106,10 +106,13 @@ class UserController extends Controller
         }
 
         $review = Review::withCount('likeEvents')->find($reviewId);
+        $htmlVal = '<span id="rv-num-likes">'
+            . trans('user.likes', ['num_like' => $review->like_events_count])
+            . '</span>';
 
         return response()->json([
             'likeAction' => $likeAction,
-            'num_likes' => $review->like_events_count,
+            'htmlVal' => $htmlVal,
         ]);
     }
 }

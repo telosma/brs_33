@@ -102,6 +102,11 @@ class User extends Authenticatable
         }
     }
 
+   public function getAvatarLinkAttribute($value)
+    {
+        return asset(config('upload.image_upload') . $value);
+    }
+
     protected $appends = ['gender_name'];
 
     public function getGenderNameAttribute()

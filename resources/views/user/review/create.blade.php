@@ -13,7 +13,7 @@
     @include('includes.error')
     <div class="row preview-book">
         <div class="col-md-3 book-img pull-left">
-            <img src="{{ asset(config('upload.book_upload') . $book->book_image) }}" alt="book-img">
+            <img src="{{ $book->book_image }}" alt="book-img">
         </div>
         <div class="col-md-9 description-book">
             <div class="row">
