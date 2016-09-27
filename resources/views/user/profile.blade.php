@@ -1,18 +1,12 @@
 @extends('layouts.usermaster')
 
-@section('header')
-
-@include('includes.header')
-
-@endsection
-
 @section('content')
 
 <div class="container box-profile">
     <div class="row">
         <div class="avatar">
             <a href="{{ route('users.show', $userInfo->id) }}">
-                <img src="{{ asset(config('upload.image_upload') . $userInfo->avatar_link) }}" alt="avatar" style="float: left;">
+                <img src="{{ $userInfo->avatar_link }}" alt="avatar" style="float: left;">
             </a>
         </div>
         <div class="col-md-6 col-lg-6 content-profile">

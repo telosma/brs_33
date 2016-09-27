@@ -1,11 +1,5 @@
 @extends('layouts.usermaster')
 
-@section('header')
-
-@include('includes.header')
-
-@endsection
-
 @section('content')
 
 @include('includes.notification')
@@ -18,7 +12,7 @@
     <div class="show-profile row">
         <div class="col-md-3">
             <div class="avatar">
-                <img src="{{ asset(config('upload.image_upload') . $user->avatar_link) }}" alt="avatar-img">
+                <img src="{{ $user->avatar_link }}" alt="avatar-img">
             </div>
         </div>
         <div class="col-md-9">

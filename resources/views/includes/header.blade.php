@@ -7,7 +7,7 @@
             <ul class="nav navbar-nav navbar-right user-header">
                 <li>
                     <div class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-                        <img src="{{ asset(config('upload.image_upload') . Auth::user()->avatar_link) }}" alt="avt-img">
+                        <img src="{{ Auth::user()->avatar_link }}" alt="avt-img">
                         {{ Auth::user()->name }}
                         <span class="caret"></span>
                     </div>
