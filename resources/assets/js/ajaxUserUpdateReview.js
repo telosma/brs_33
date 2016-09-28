@@ -1,6 +1,6 @@
 $('#submit-update-review').on('click', function(event) {
     $.ajax({
-        url: urlPutUpdateReview,
+        url: $(this).data('urlPutEditReview'),
         method: 'PUT',
         data: {
             content: tinyMCE.get('rv-content').getContent()
