@@ -15,7 +15,7 @@
     </head>
     <body>
 
-        @yield('header')
+        @include('includes.header')
         @yield('content')
         
         {{ Html::script('js/jquery.min.js') }}

@@ -1,11 +1,5 @@
 @extends('layouts.usermaster')
 
-@section('header')
-
-@include('includes.header')
-
-@endsection
-
 @section('content')
 
 <div class="container">
