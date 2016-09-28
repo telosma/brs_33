@@ -53,6 +53,10 @@ return [
         'posted_by' => 'Posted by',
         'permission_deny' => 'Permission denied',
         'update_success' => 'Successfully updated',
+        'comments' => 'Comments',
         'likes' => 'Likes',
     ],
+    'created_at' => 'at :time',
+    'likes' => ':num_like Likes',
+    'comments' => ':num_comment Comments',
 ];

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Review extends Model
 {
@@ -13,7 +14,7 @@ class Review extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment', 'user_id');
+        return $this->hasMany('App\Models\Comment', 'review_id');
     }
 
     public function likeEvents()
@@ -34,6 +35,11 @@ class Review extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format(config('common.publish_date_format'));
     }
 
     public function delete()
