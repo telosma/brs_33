@@ -20,7 +20,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::withCount(['comments', 'usersLikes'])->with([
             'book' => function ($query){
-                $query->select('id', 'title');
+                $query->select('id', 'title', 'book_image');
             },
             'user' => function ($query){
                 $query->select('id', 'name', 'gender');

@@ -57,6 +57,17 @@ class BookController extends Controller
         ];
     }
 
+    public function ajaxGetOne(Request $request)
+    {
+        try {
+            $book = Book::with('category')->findOrFail($request->id);
+
+            return $book;
+        } catch (Exception $ex) {
+            return abort(404);
+        }
+    }
+
     public function ajaxDelete(Request $request)
     {
         $resultCount = 0;
