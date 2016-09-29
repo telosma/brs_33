@@ -19,4 +19,10 @@ return [
     'rate_point' => 'Rate point',
     'favorites' => 'Favorites',
     'details' => 'Book details',
+    'all_book' => 'All book',
+    'mark_as' => [
+        'reading' => 'Mark as reading',
+        'read' => 'Mark as read',
+        'null' => 'Unmark',
+    ],
 ];

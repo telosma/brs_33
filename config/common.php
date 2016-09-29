@@ -24,4 +24,6 @@ return [
     ],
     'date_format_created' => 'd-m-Y, g:iA',
     'review_min_text_length' => '300',
+    'num_entry_per_page' => 9,
+    'rate_point_max' => 5,
 ];
