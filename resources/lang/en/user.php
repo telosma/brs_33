@@ -56,6 +56,7 @@ return [
         'comments' => 'Comments',
         'like' => 'Like',
         'unlike' => 'Unlike',
+        'load_fail' => 'Some thing error! Cannot update review and comment',
     ],
     'created_at' => 'at :time',
     'likes' => ':num_like Likes',
@@ -63,4 +64,10 @@ return [
     'query_fail' => 'Query action failed',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'cancel' => 'Cancel',
+    'yes' => 'Yes',
+    'comment' => [
+        'confirm_delete' => 'Are you sure want to delete this comment',
+        'cannot_delete' => 'Cannot delete this comment',
+    ],
 ];
