@@ -35,6 +35,7 @@ class BookController extends Controller
         if ($category) {
             return $this->drawBreadcrumbs($category->category_parent_id)
                 . '<li><a href="'
+                . route('book.showByCategory', $category->id)
                 . '">'
                 . $category->name
                 . '</a></li>';
@@ -111,5 +112,26 @@ class BookController extends Controller
         }
 
         return 0;
+    }
+
+    public function showByCategory(Category $category)
+    {
+        $books = Book::with([
+            'marks' => function($query) {
+                $query->where('user_id', $this->userId);
+            },
+            'favorites' => function($query) {
+                $query->where('user_id', $this->userId);
+            },
+        ])->whereIn('category_id', $this->categoryAllTree($category->id))
+            ->orderBy('published_at', 'desc')
+            ->paginate(config('common.num_entry_per_page'));
+
+        return view('book', [
+            'bodyTitle' => $category->name,
+            'books' => $books,
+            'bookMenu' => $this->bookMenu($category->id),
+            'breadcrumbs' => $this->drawBreadcrumbs($category->id),
+        ]);
     }
 }

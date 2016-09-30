@@ -1,5 +1,5 @@
 <li {!! $category['id'] == $categoryCurrentId ? 'class="active"' : '' !!}>
-    <a href="#">
+    <a href="{!! route('book.showByCategory', $category['id']) !!}">
         {!! $category['name'] !!}
         <span class="badge">{!! $bookCountTree !!}</span>
         @if ($children)
