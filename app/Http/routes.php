@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('book', ['uses' => 'BookController@index', 'as' => 'book.index']);
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [
         'uses' => 'HomeController@index',

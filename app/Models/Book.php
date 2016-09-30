@@ -115,4 +115,14 @@ class Book extends Model
     {
         return $this->hasMany('App\Models\BookRequest', 'book_id');
     }
+
+    public function marks()
+    {
+        return $this->hasMany('App\Models\Mark', 'book_id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany('App\Models\Favorite', 'book_id');
+    }
 }
