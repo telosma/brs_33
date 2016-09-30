@@ -35,7 +35,7 @@
         {{ Form::open(['route' => 'updateProfile', 'method' => 'post', 'files' => true, 'class' => 'form-update-profile']) }}
             <div class="cell col-md-3">
                 <div class="avatar">
-                    <img id="preview_avatar_img" src="{{ asset(config('upload.image_upload') . $user->avatar_link) }}" alt="avatar-img">
+                    <img id="preview_avatar_img" src="{{ $user->avatar_link }}" alt="avatar-img">
                 </div>
                 {{ Form::file('avatar_link', ['class' => 'avatar_link', 'id' => 'file_avatar']) }}
             </div>

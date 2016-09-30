@@ -5,10 +5,10 @@ $('.btn-like-review').on('click', function(e) {
     }
     likeRequestRunning = true;
     $.ajax({
-        url: urlLikeReview,
+        url: $(this).data('urlPostLikeReview'),
         method: 'POST',
         data: {
-            reviewId: reviewId
+            reviewId: $(this).data('reviewId')
         },
         success: function(msg) {
             if (msg['err']) {

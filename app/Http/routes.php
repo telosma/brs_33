@@ -128,6 +128,11 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'UserController@postLikeReview',
         'as' => 'postLikeReview'
     ]);
+
+    Route::post('add-comment', [
+        'uses' => 'CommentController@postAddComment',
+        'as' => 'postAddComment'
+    ]);
 });
 
 Route::resource('reviews', 'ReviewController');

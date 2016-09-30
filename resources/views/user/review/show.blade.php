@@ -1,11 +1,5 @@
 @extends('layouts.usermaster')
 
-@section('header')
-
-@include('includes.header')
-
-@endsection
-
 @section('content')
 
 <div class="container">
@@ -61,13 +55,13 @@
             @if (Auth::check())
                 @if (Auth::user()->id === $review->user->id)
                     <div>
-                        <button class="btn modal-edit-review" data-toggle="modal" data-target="#review-modal" style="color: blue;">{{ trans('user.edit') }}</button>
+                        <button class="btn modal-edit-review" data-toggle="modal" data-target="#review-modal" data-url-put-edit-review="{{ route('reviews.update', $review->id) }}" style="color: blue;">{{ trans('user.edit') }}</button>
                         {{ Form::open(['route' => ['reviews.destroy', $review->id], 'method' => 'delete']) }}
                             {{ Form::submit(trans('user.review.delete'), ['class' => 'btn modal-edit-review']) }}
                         {{ Form::close() }}
                     </div>
                 @else
-                    <button class="btn btn-like-review btn-info">
+                    <button class="btn btn-like-review btn-info" data-review-id={{ $review->id }} data-url-post-like-review="{{ route('postLikeReview') }}">
                         @if ($review->liked)
                             {{ trans('user.review.unlike') }}
                         @else
@@ -105,18 +99,33 @@
             <span id="rv-num-likes">{{ trans('user.likes', ['num_like' => $review->like_events_count]) }}</span>
         </h5>
         <div class="comment">
-            @if ($review->comments)
-                @foreach ($review->comments as $comment)
-                    <div class="user-info">
-                        <img class="user-ava" src="{{ $comment->user->avatar_link }}"></img>
-                        <div class="user-name">
-                            <h4>{{ $comment->user->name }}</h4>
-                            <p class="comment-time">
-                                {{ trans('user.created_at', ['time' => $comment->created_at]) }}
-                            </p>
-                        </div>
-                        <div class="comment-body">
-                            {{ $comment->content }}
+            @if ($comments)
+                @foreach ($comments as $comment)
+                    <div class="item-comment clear-fix">
+                        <div class="user-info">
+                            <img class="user-ava" src="{{ $comment->user->avatar_link }}"></img>
+                            <div class="user-name">
+                                <h4>{{ $comment->user->name }}</h4>
+                                <p class="comment-time">
+                                    {{ trans('user.created_at', ['time' => $comment->created_at]) }}
+                                </p>
+                            </div>
+                            <div class="comment-body" id="{{ $comment->id }}">
+                                <span>{{ $comment->content }}</span>
+                                <div class="dropdown">
+                                    <i class="fa sm fa-pencil" class="dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+                                    </i>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">{{ trans('user.edit') }}</a>
+                                        </li>
+                                        <li class="devider"></li>
+                                        <li>
+                                            <a href="#">{{ trans('user.delete') }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -133,7 +142,7 @@
                             'id' => 'comment-content',
                             'rows' => '3',
                         ]) }}
-                        <span class="glyphicon glyphicon-send" type="submit" id="icon-submit-comment"></span>
+                        <span class="glyphicon glyphicon-send" type="submit" id="icon-submit-comment" data-review-id="{{ $review->id }}" data-url-post-add-comment="{{ route('postAddComment') }}"></span>
                     </div>
                 {{ Form::close() }}
             </div>
@@ -160,12 +169,10 @@
         toolbar: 'fontsizeselect bold italic | h2 | blockquote alignleft aligncenter alignright alignfull',
         fontsize_formats: "12pt 14pt 18pt"
     });
-    var urlPutUpdateReview = '{{ route('reviews.update', $review->id) }}';
-    var urlLikeReview = '{{ route('postLikeReview') }}';
-    var reviewId = {{ $review->id }};
 </script>
 
 {{ Html::script('js/ajaxUserUpdateReview.js') }}
 {{ Html::script('js/ajaxLikeReview.js') }}
+{{ Html::script('js/ajaxUserComment.js') }}
 
 @endsection

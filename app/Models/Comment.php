@@ -22,13 +22,8 @@ class Comment extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute()
     {
-        return Carbon::parse($value)->format(config('common.publish_date_format'));
-    }
-
-    public function setCreatedAtAttribute($value)
-    {
-        return $this->attributes['created_at'] = Carbon::createFromFormat(config('common.date_format_created'), $value);
+        return Carbon::parse($this->attributes['created_at'])->format(config('common.publish_date_format'));
     }
 }
