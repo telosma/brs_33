@@ -40,4 +40,46 @@ class CommentController extends Controller
             200
         ]);
     }
+
+    public function postDeleteComment(Request $request)
+    {
+        $comment = Comment::findOrFail($request->commentId);
+        if (Auth::user()->id == $comment->user->id) {
+            $result = $comment->delete();
+            if ($result) {
+                $currentReview = Review::withCount('comments')->findOrFail($request->reviewId);
+
+                return response()->json([
+                    'status' =>  trans('user.yes'),
+                    'num_comment' => $currentReview->comments_count,
+                    200
+                ]);
+            }
+        }
+
+        return response()->json([
+            'err' => trans('user.comment.cannot_delete'),
+            500
+        ]);
+    }
+
+    public function postLoadComment(Request $request)
+    {
+        try {
+            $review = Review::withCount(['comments', 'likeEvents'])->find($request->reviewId);
+            $comments = $review->comments()->orderBy('created_at', 'ASC')->get();
+
+            return response()->json([
+                'num_comment' => $review->comments_count,
+                'num_like' => $review->likeEvents_count,
+                'htmlValue' => view('includes.loadComment', ['comments' => $comments])->render(),
+                200
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'err' => trans('user.review.load_fail'),
+                500
+            ]);
+        }
+    }
 }

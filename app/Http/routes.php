@@ -1,16 +1,5 @@
 <?php
 
-/*
-  |--------------------------------------------------------------------------
-  | Application Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register all of the routes for an application.
-  | It's a breeze. Simply tell Laravel the URIs it should respond to
-  | and give it the controller to call when that URI is requested.
-  |
- */
-
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -133,6 +122,16 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'CommentController@postAddComment',
         'as' => 'postAddComment'
     ]);
+
+    Route::post('delete-comment', [
+        'uses' => 'CommentController@postDeleteComment',
+        'as' => 'postDeleteComment'
+    ]);
 });
 
 Route::resource('reviews', 'ReviewController');
+
+Route::post('load-comment', [
+    'uses' => 'CommentController@postLoadComment',
+    'as' => 'postLoadComment'
+]);

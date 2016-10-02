@@ -101,7 +101,7 @@
         <div class="comment">
             @if ($comments)
                 @foreach ($comments as $comment)
-                    <div class="item-comment clear-fix">
+                    <div class="item-comment clear-fix" id="item-comment-{{ $comment->id }}">
                         <div class="user-info">
                             <img class="user-ava" src="{{ $comment->user->avatar_link }}"></img>
                             <div class="user-name">
@@ -110,21 +110,23 @@
                                     {{ trans('user.created_at', ['time' => $comment->created_at]) }}
                                 </p>
                             </div>
-                            <div class="comment-body" id="{{ $comment->id }}">
+                            <div class="comment-body">
                                 <span>{{ $comment->content }}</span>
-                                <div class="dropdown">
-                                    <i class="fa sm fa-pencil" class="dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
-                                    </i>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">{{ trans('user.edit') }}</a>
-                                        </li>
-                                        <li class="devider"></li>
-                                        <li>
-                                            <a href="#">{{ trans('user.delete') }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @if (Auth::user()->id === $comment->user->id)
+                                    <div class="dropdown" data-comment-id="{{ $comment->id }}" data-review-id="{{ $review->id }}">
+                                        <i class="fa sm fa-pencil dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+                                        </i>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button>{{ trans('user.edit') }}</button>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <button id="btn-delete-comment" data-toggle="modal" data-target="#delete-cmt-modal">{{ trans('user.delete') }}</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -151,6 +153,23 @@
         <a href="{{ route('getSignin') }}" class="btn btn-info">{{ trans('user.signin_to_make_comment') }}</a>
     @endif
 </div>
+<div class="modal fade" id="delete-cmt-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <strong class="modal-title">{{ trans('user.delete') }}</strong>
+            </div>
+            <div class="modal-body">
+                <p>{{ trans('user.comment.confirm_delete') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('user.cancel') }}</button>
+                <button type="button" class="btn btn-info" id="btn-confirm-delete" data-dismiss="modal" data-url-delete-comment="{{ route('postDeleteComment') }}">{{ trans('user.yes') }} </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
@@ -174,5 +193,6 @@
 {{ Html::script('js/ajaxUserUpdateReview.js') }}
 {{ Html::script('js/ajaxLikeReview.js') }}
 {{ Html::script('js/ajaxUserComment.js') }}
+{{ Html::script('js/ajaxDeleteComment.js') }}
 
 @endsection
