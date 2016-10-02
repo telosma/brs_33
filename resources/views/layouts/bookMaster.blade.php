@@ -30,3 +30,40 @@
 </div>
 
 @endsection
+
+@section('script')
+{{ Html::script('js/book.js') }}
+<script>
+    $(document).ready(function () {
+        var Book = new book();
+        Book.init(
+            {
+                'favorite': '{!! route('book.favorite') !!}',
+                'mark': '{!! route('book.mark') !!}',
+                'login': '{!! route('getSignin') !!}',
+            },
+            {
+                'action': '{!! config('book.action') !!}',
+                'actions': {
+                    'active': '{!! config('book.actions.active') !!}',
+                    'deactive': '{!! config('book.actions.deactive') !!}',
+                    'marks': {
+                        'read': '{!! config('book.actions.marks.read') !!}',
+                        'reading': '{!! config('book.actions.marks.reading') !!}',
+                        'none': '{!! config('book.actions.marks.none') !!}',
+                    },
+                },
+                'result': '{!! config('book.result') !!}',
+                'results': {
+                    'success': '{!! config('book.results.success') !!}',
+                    'warning': '{!! config('book.results.warning') !!}',
+                    'fail': '{!! config('book.results.fail') !!}',
+                },
+            },
+            {
+                'comfirm_login': '{!! trans('book.comfirm_login') !!}',
+            }
+        );
+    });
+</script>
+@endsection

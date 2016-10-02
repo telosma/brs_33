@@ -29,4 +29,5 @@ return [
     ],
     'remove' => 'Remove',
     'default' => 'Default',
+    'comfirm_login' => 'You have to login to do this action',
 ];

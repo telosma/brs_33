@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Book;
 use App\Models\Review;
+use App\Models\Favorite;
+use App\Models\Mark;
+use App\Http\Requests\MarkRequest;
 use App\Models\Category;
 use Auth;
 
@@ -149,5 +152,100 @@ class BookController extends Controller
         $reviews = Review::where('book_id', $bookId)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('book.bookdetail', ['book' => $book, 'reviews' => $reviews]);
+    }
+
+    public function favorite(MarkRequest $request)
+    {
+        $favorite = Favorite::where('user_id', $this->userId)->where('book_id', $request->id)->first();
+        if ($favorite) {
+            if ($request->action == config('book.actions.deactive') && $favorite->delete()) {
+                return [
+                    config('book.action') => config('book.actions.deactive'),
+                    config('book.result') => config('book.results.success'),
+                ];
+            }
+        } else {
+            if ($request->action == config('book.actions.active') && Favorite::create([
+                'user_id' => $this->userId,
+                'book_id' => $request->id
+            ])) {
+                return [
+                    config('book.action') => config('book.actions.active'),
+                    config('book.result') => config('book.results.success'),
+                ];
+            }
+        }
+
+        return [
+            config('book.action') => $request->action,
+            config('book.result') => config('book.results.fail')
+        ];
+    }
+
+    public function mark(MarkRequest $request)
+    {
+        $mark = Mark::where('user_id', $this->userId)->where('book_id', $request->id)->first();
+        if ($mark) {
+            switch ($request->action) {
+                case config('book.actions.marks.read'):
+                    if ($mark->action != config('book.db.read') && $mark->update(['action' => config('book.db.read')])) {
+                        return [
+                            config('book.action') => config('book.actions.marks.read'),
+                            config('book.result') => config('book.results.success'),
+                        ];
+                    }
+                    break;
+                case config('book.actions.marks.reading'):
+                    if ($mark->action != config('book.db.reading')
+                        && $mark->update(['action' => config('book.db.reading')])
+                    ) {
+                        return [
+                            config('book.action') => config('book.actions.marks.reading'),
+                            config('book.result') => config('book.results.success'),
+                        ];
+                    }
+                    break;
+                case config('book.actions.marks.none'):
+                    if ($mark->delete()) {
+                        return [
+                            config('book.action') => config('book.actions.marks.none'),
+                            config('book.result') => config('book.results.success'),
+                        ];
+                    }
+                    break;
+            }
+        } else {
+            switch ($request->action) {
+                case config('book.actions.marks.read'):
+                    if (Mark::create([
+                        'user_id' => $this->userId,
+                        'book_id' => $request->id,
+                        'action' => config('common.read')
+                    ])) {
+                        return [
+                            config('book.action') => config('book.actions.marks.read'),
+                            config('book.result') => config('book.results.success'),
+                        ];
+                    }
+                    break;
+                case config('book.actions.marks.reading'):
+                    if (Mark::create([
+                        'user_id' => $this->userId,
+                        'book_id' => $request->id,
+                        'action' => config('common.reading')
+                    ])) {
+                        return [
+                            config('book.action') => config('book.actions.marks.reading'),
+                            config('book.result') => config('book.results.success'),
+                        ];
+                    }
+                    break;
+            }
+        }
+
+        return [
+            config('book.action') => $request->action,
+            config('book.result') => config('book.results.fail')
+        ];
     }
 }

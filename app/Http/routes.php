@@ -4,13 +4,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::group(['prefix' => 'book'], function (){
+Route::group(['prefix' => 'book'], function () {
     Route::get('/', ['uses' => 'BookController@index', 'as' => 'book.index']);
     Route::get('category/{category}', ['uses' => 'BookController@showByCategory', 'as' => 'book.showByCategory']);
     Route::get('/{bookId}', [
         'as' => 'book.show',
         'uses' => 'BookController@show',
     ]);
+    Route::group(['middleware' => 'auth'], function() {
+        Route::post('favorite', ['uses' => 'BookController@favorite', 'as' => 'book.favorite']);
+        Route::post('mark', ['uses' => 'BookController@mark', 'as' => 'book.mark']);
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
