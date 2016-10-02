@@ -12,7 +12,7 @@
         <div class="col-md-6 col-lg-6 content-profile">
             <p class="name-profile">{{ $userInfo->name }}</p>
             @if (!is_null($action))
-                @if ($action == trans('user.profile.edit'))
+                @if ($action == trans('user.actions.edit'))
                     <a href="{{ route('getEditProfile') }}" class="btn btn-edit pull-right">{{ $action }}</a>
                 @else
                     <button class="btn btn-edit btn-follow pull-right">{{ $action }}</button>

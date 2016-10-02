@@ -54,18 +54,18 @@
             </p>
             @if (Auth::check())
                 @if (Auth::user()->id === $review->user->id)
-                    <div>
-                        <button class="btn modal-edit-review" data-toggle="modal" data-target="#review-modal" data-url-put-edit-review="{{ route('reviews.update', $review->id) }}" style="color: blue;">{{ trans('user.edit') }}</button>
+                    <div class="btn-review-action">
+                        <button class="btn btn-info modal-edit-review" data-toggle="modal" data-target="#review-modal" data-url-put-edit-review="{{ route('reviews.update', $review->id) }}">{{ trans('user.actions.edit') }}</button>
                         {{ Form::open(['route' => ['reviews.destroy', $review->id], 'method' => 'delete']) }}
-                            {{ Form::submit(trans('user.review.delete'), ['class' => 'btn modal-edit-review']) }}
+                            {{ Form::submit(trans('user.actions.delete'), ['class' => 'btn btn-info modal-edit-review']) }}
                         {{ Form::close() }}
                     </div>
                 @else
                     <button class="btn btn-like-review btn-info" data-review-id={{ $review->id }} data-url-post-like-review="{{ route('postLikeReview') }}">
                         @if ($review->liked)
-                            {{ trans('user.review.unlike') }}
+                            {{ trans('user.actions.unlike') }}
                         @else
-                            {{ trans('user.review.like') }}
+                            {{ trans('user.actions.like') }}
                         @endif
                     </button>
                 @endif
@@ -83,7 +83,7 @@
                             {!! Form::textarea('content', $review->content, ['id' => 'rv-content']) !!}
                         </div>
                         <div class="modal-footer">
-                            {!! Form::submit(trans('user.review.update'), ['class' => 'btn btn-info', 'data-dismiss' => 'modal', 'id' => 'submit-update-review']) !!}
+                            {!! Form::submit(trans('user.actions.update'), ['class' => 'btn btn-info', 'data-dismiss' => 'modal', 'id' => 'submit-update-review']) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
@@ -112,20 +112,22 @@
                             </div>
                             <div class="comment-body">
                                 <span>{{ $comment->content }}</span>
-                                @if (Auth::user()->id === $comment->user->id)
-                                    <div class="dropdown" data-comment-id="{{ $comment->id }}" data-review-id="{{ $review->id }}">
-                                        <i class="fa sm fa-pencil dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
-                                        </i>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button>{{ trans('user.edit') }}</button>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <button id="btn-delete-comment" data-toggle="modal" data-target="#delete-cmt-modal">{{ trans('user.delete') }}</button>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                @if (Auth::check())
+                                    @if (Auth::user()->id === $comment->user->id)
+                                        <div class="dropdown" data-comment-id="{{ $comment->id }}" data-review-id="{{ $review->id }}">
+                                            <i class="fa sm fa-pencil dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+                                            </i>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button>{{ trans('user.action.edit') }}</button>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <button id="btn-delete-comment" data-toggle="modal" data-target="#delete-cmt-modal">{{ trans('user.delete') }}</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -150,7 +152,7 @@
             </div>
         </div>
     @else
-        <a href="{{ route('getSignin') }}" class="btn btn-info">{{ trans('user.signin_to_make_comment') }}</a>
+        <a href="{{ route('getSignin') }}" class="btn btn-info col-md-offset-4">{{ trans('user.signin_to_make_comment') }}</a>
     @endif
 </div>
 <div class="modal fade" id="delete-cmt-modal" role="dialog">
