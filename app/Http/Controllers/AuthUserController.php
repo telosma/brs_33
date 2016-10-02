@@ -29,7 +29,7 @@ class AuthUserController extends Controller
         $params = $request->only('gender', 'name', 'email', 'password', 'avatar_link');
         $user = User::create($params);
         if (!empty($user)) {
-            return redirect()->back()->with([
+            return redirect()->route('getSignin')->with([
                 config('common.flash_message') => trans('user.msg_success_signup'),
                 config('common.flash_level_key') => config('common.flash_level.success')    
             ]);
