@@ -127,7 +127,7 @@ class BookController extends Controller
             'category_id',
             'published_at',
         ];
-        if ($request->hasFile('book_image')) {
+        if ($request->hasFile('book_image') || $request->reset_image == 'true') {
             $requestArray[] = 'book_image';
         }
 

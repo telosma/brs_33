@@ -97,14 +97,27 @@
                         <div class="col-md-3" style="height: 13em">
                             {!! Form::file('book_image', [
                                 'style' => 'display: none;',
-                                'onchange' => 'addNewImage(this, "#book_image")',
+                                'id' => 'book-image-file',
                             ]) !!}
+                            {!! Form::hidden('reset_image') !!}
                             <img title="{!! trans('book.choose_book_image') !!}"
-                                src="{!! asset(config('fileupload.book_image_dir') . config('common.book_image_default')) !!}"
+                                data-default-image="{!! asset(config('fileupload.book_image_dir')
+                                    . config('common.book_image_default'))
+                                !!}"
                                 height="100%"
                                 onclick="$('[name = book_image]').click();"
                                 id="book_image"
                             />
+                            <div style="position: absolute; bottom: 0">
+                                {!! Form::button(trans('book.remove'), [
+                                    'class' => 'btn btn-success btn-xs',
+                                    'id' => 'remove-image',
+                                ]) !!}
+                                {!! Form::button(trans('book.default'), [
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'id' => 'default-image',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                     <div class="row">
