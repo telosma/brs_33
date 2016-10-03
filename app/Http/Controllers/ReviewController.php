@@ -42,7 +42,10 @@ class ReviewController extends Controller
     public function show($id)
     {
         $review = Review::withCount(['comments', 'usersLikes', 'likeEvents'])->findOrFail($id);
-        $review['liked'] = UserService::checkLiked($id, Auth::user()->id);
+        if (Auth::check()) {
+            $review['liked'] = UserService::checkLiked($id, Auth::user()->id);
+        }
+
         $comments = $review->comments()->orderBy('created_at', 'ASC')->get();
 
         return view('user.review.show', ['review' => $review, 'comments' => $comments]);

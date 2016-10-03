@@ -51,7 +51,7 @@
             ]) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit(trans('user.register'), [
+            {!! Form::submit(trans('user.actions.register'), [
                 'class' => 'form-control btn btn-success btn-register',
             ]) !!}
         </div>

@@ -18,9 +18,9 @@ class UserController extends Controller
     {
         if (Auth::user()) {
             if (Auth::user()->id != $id) {
-                $action = UserService::checkFollowed($id, Auth::user()->id) ? trans('user.profile.unfollow') : trans('user.profile.follow');
+                $action = UserService::checkFollowed($id, Auth::user()->id) ? trans('user.profile.unfollow') : trans('user.actions.follow');
             } else {
-                $action = trans('user.profile.edit');
+                $action = trans('user.actions.edit');
             }
         } else {
             $action = null;
@@ -70,12 +70,12 @@ class UserController extends Controller
 
         $currentUserId = Auth::user()->id;
         if (UserService::checkFollowed($request->userId, $currentUserId)) {
-            $action = UserFollow::deleteFollow($request->userId, $currentUserId) ? trans('user.profile.follow') : trans('user.profile.unfollow');
+            $action = UserFollow::deleteFollow($request->userId, $currentUserId) ? trans('user.actions.follow') : trans('user.actions.unfollow');
         } else {
             $params['follower_id'] = $request->userId;
             $params['following_id'] = $currentUserId;
             UserFollow::create($params);
-            $action = trans('user.profile.unfollow');
+            $action = trans('user.actions.unfollow');
         }
 
         $userFollow = User::withCount('followers', 'followings')->find($request->userId);
@@ -97,12 +97,12 @@ class UserController extends Controller
         $currentUserId = Auth::user()->id;
         $reviewId = $request->reviewId;
         if (UserService::checkLiked($reviewId, $currentUserId)) {
-            $likeAction = LikeEvent::deleteLike($request->reviewId, $currentUserId) ? trans('user.review.like') : trans('user.review.unlike');
+            $likeAction = LikeEvent::deleteLike($request->reviewId, $currentUserId) ? trans('user.actions.like') : trans('user.actions.unlike');
         } else {
             $params['user_id'] = $currentUserId;
             $params['review_id'] = $reviewId;
             LikeEvent::create($params);
-            $likeAction = trans('user.review.unlike');
+            $likeAction = trans('user.actions.unlike');
         }
 
         $review = Review::withCount('likeEvents')->find($reviewId);

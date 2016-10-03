@@ -31,7 +31,7 @@ class AuthUserController extends Controller
         if (!empty($user)) {
             return redirect()->route('getSignin')->with([
                 config('common.flash_message') => trans('user.msg_success_signup'),
-                config('common.flash_level_key') => config('common.flash_level.success')    
+                config('common.flash_level_key') => config('common.flash_level.success')
             ]);
         }
     }

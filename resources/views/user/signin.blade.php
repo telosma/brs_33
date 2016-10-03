@@ -5,7 +5,7 @@
 <div class="col-md-6 col-md-offset-3">
     @include('includes.error')
     @include('includes.message')
-    <h1 style="text-align: center;">{{ trans('user.login') }}</h1>
+    <h1 style="text-align: center;">{{ trans('user.actions.login') }}</h1>
     {!! Form::open(['route' => 'signin' ,'method' => 'post']) !!}
         <div class="form-group">
             {!! Form::label('email', trans('user.email')) !!}
@@ -22,7 +22,7 @@
             ]) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit(trans('user.login'), [
+            {!! Form::submit(trans('user.actions.login'), [
                 'class' => 'form-control btn btn-success btn-login',
             ]) !!}
         </div>

@@ -15,7 +15,7 @@
                         <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ trans('user.profile.label') }}</a></li>
                         <li><a href="#">{{ trans('user.timeline') }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('signout') }}">{{ trans('user.logout') }}</a></li>
+                        <li><a href="{{ route('signout') }}">{{ trans('user.actions.logout') }}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -24,13 +24,13 @@
                 <li>
                     <a href="{{ route('getSignup') }}">
                         <span class="glyphicon glyphicon-user"></span>
-                        {{ trans('user.register') }}
+                        {{ trans('user.actions.register') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('getSignin') }}">
                         <span class="glyphicon glyphicon-log-in"></span>
-                        {{ trans('user.login') }}
+                        {{ trans('user.actions.login') }}
                     </a>
                 </li>
             </ul>

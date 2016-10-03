@@ -102,6 +102,11 @@ class User extends Authenticatable
         }
     }
 
+    public function setEmailAttribute($email)
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
+
     public function getAvatarLinkAttribute()
     {
         return asset(config('upload.image_upload') . $this->attributes['avatar_link']);

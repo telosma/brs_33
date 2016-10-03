@@ -39,18 +39,20 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="form-review col-md-6">
-            {{ Form::open(['route' => 'reviews.store', 'method' => 'post']) }}
-                {!! Form::textarea('content', null, ['id' => 'rv-content']) !!}
-                {{ Form::hidden('book_id', $book->id) }}
-                {{ Form::hidden('user_id', Auth::user()->id) }}
-                {{ Form::submit(trans('user.review.post'), [
-                    'class' => 'btn btn-success pull-right rv-submit',
-                ]) }}
-            {{ Form::close() }}
-        </div>
-        <div class="col-md-6" id="live-editor" style="height: 300px; overflow: scroll; border: 2px solid black;">
+    <div class="row review-create-wrapper">
+        <div class="col-sm-12">
+            <div class="half-editor-create">
+                {{ Form::open(['route' => 'reviews.store', 'method' => 'post']) }}
+                    {!! Form::textarea('content', null, ['id' => 'rv-content']) !!}
+                    {{ Form::hidden('book_id', $book->id) }}
+                    {{ Form::hidden('user_id', Auth::user()->id) }}
+                    {{ Form::submit(trans('user.review.post'), [
+                        'class' => 'btn btn-success pull-right rv-submit',
+                    ]) }}
+                {{ Form::close() }}
+            </div>
+            <div class="half-previewing" id="live-editor">
+            </div>
         </div>
     </div>
 </div>
@@ -66,11 +68,16 @@
         selector: '#rv-content',
         selection_toolbar: 'bold italic | quicklink h2 h3',
         menubar: false,
+        height: "500",
         plugins: 'link',
         toolbar: 'fontsizeselect bold italic | h2 | blockquote alignleft aligncenter alignright alignfull',
-        fontsize_formats: "12pt 14pt 18pt",
+        size: "14pt",
+        fontsize_formats: "14pt 18pt 24pt",
         setup : function(ed) {
-            ed.on('keyup change', function(){
+            ed.on('init', function(){
+                this.getDoc().body.style.fontSize = '14pt';
+            });
+            ed.on('keyup change init', function(){
                 $('#live-editor').html(tinymce.activeEditor.getContent());
             });
         }
