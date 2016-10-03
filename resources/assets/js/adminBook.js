@@ -220,6 +220,30 @@ function book() {
             $('#description').val(rdata.description.replace(/<br \/>/g, ''));
             $('#book_image').attr('src', rdata.book_image);
             $('#myModal').modal('show');
+            $('#book-image-file').on('change', function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#book_image').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $('#book_image').attr('src', rdata.book_image);
+                }
+                $('[name = reset_image]').val(false);
+            });
+            $('#remove-image').on('click', function () {
+                $('#book-image-file').val('');
+                $('#book_image').attr('src', rdata.book_image);
+                $('[name = reset_image]').val(false);
+            });
+            $('#default-image').on('click', function () {
+                $('#book_image').attr('src', $('#book_image').data('default-image'));
+                $('[name = reset_image]').val(true);
+            });
+            $('#myModal').on('click', function () {
+                alert($('[name = reset_image]').val());
+            });
         });
         this.eventUpdate();
     };

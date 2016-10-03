@@ -27,4 +27,6 @@ return [
         'read' => 'Mark as read',
         'null' => 'Unmark',
     ],
+    'remove' => 'Remove',
+    'default' => 'Default',
 ];
