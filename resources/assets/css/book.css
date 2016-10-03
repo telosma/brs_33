@@ -109,3 +109,66 @@ and open the template in the editor.
     border-bottom: 1px dashed #008340;
     padding-bottom: 5px;
 }
+.post-info.when-link {
+    text-decoration: none;
+}
+.post-info.when-link:hover {
+    color: #333;
+}
+.post-info-wrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+.post-info {
+    display: inline-block;
+    margin-right: 8px;
+    color: #969696;
+    font-size: 12px;
+    line-height: 125%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.user-name {
+    color: blue;
+}
+.post-summary {
+    display: block;
+    margin-bottom: 14px;
+    line-height: 144%;
+    padding-right: 4px;
+}
+article p {
+    font-weight: 300;
+    font-family: "Times New Roman", Times, serif;
+}
+.item-review {
+    margin-bottom: 40px;
+}
+.book-detail .book-content {
+    height: 500px;
+    margin-bottom: 60px;
+}
+.mark-dropdown {
+    color: tomato;
+    cursor: pointer;
+}
+.book-detail .book-info {
+    float: left;
+    border-right: dashed;
+}
+.description-content {
+    overflow: auto;
+}
+.board-description {
+    height: 370px;
+    background-color: #1d9d74;
+    width: 100%;
+}
+.item-review {
+    width:100%;
+    box-shadow: 4px 4px 2px #888888;
+}
+.book-detail .book-top .btn-info {
+    margin-left: 70px;
+}

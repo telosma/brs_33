@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Book;
+use App\Models\Review;
 use App\Models\Category;
 use Auth;
 
@@ -133,5 +134,20 @@ class BookController extends Controller
             'bookMenu' => $this->bookMenu($category->id),
             'breadcrumbs' => $this->drawBreadcrumbs($category->id),
         ]);
+    }
+
+    public function show($bookId)
+    {
+        $book = Book::with([
+            'marks' => function($query) {
+                $query->where('user_id', $this->userId);
+            },
+            'favorites' => function($query) {
+                $query->where('user_id', $this->userId);
+            },
+        ])->findOrFail($bookId);
+        $reviews = Review::where('book_id', $bookId)->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('book.bookdetail', ['book' => $book, 'reviews' => $reviews]);
     }
 }

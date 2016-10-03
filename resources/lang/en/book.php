@@ -20,6 +20,8 @@ return [
     'favorites' => 'Favorites',
     'details' => 'Book details',
     'all_book' => 'All book',
+    'mark' => 'Mark',
+    'continue_reading' => 'Continue reading →',
     'mark_as' => [
         'reading' => 'Mark as reading',
         'read' => 'Mark as read',
