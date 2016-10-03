@@ -7,6 +7,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'book'], function (){
     Route::get('/', ['uses' => 'BookController@index', 'as' => 'book.index']);
     Route::get('category/{category}', ['uses' => 'BookController@showByCategory', 'as' => 'book.showByCategory']);
+    Route::get('/{bookId}', [
+        'as' => 'book.show',
+        'uses' => 'BookController@show',
+    ]);
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

@@ -28,6 +28,5 @@
         @yield('body')
     </div>
 </div>
-<footer style="min-height: 100px; margin-top: 3em; background-color: #122b40; color: wheat">
-</footer>
+
 @endsection

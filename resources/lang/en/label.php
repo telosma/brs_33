@@ -14,4 +14,11 @@ return [
     'title.title_notfound' => 'Not Found',
     'db_notfound' => 'Database not found',
     'right_back' => 'Please right back',
+    'footer' => [
+        'about' => 'About Us',
+        'position' => 'Programmer',
+        'founder1_des' => 'Many thanks for developing user activity',
+        'founder2_des' => 'Many thanks for developing admin activity',
+        'copyright' => 'Copyright 10-2016',
+    ],
 ];

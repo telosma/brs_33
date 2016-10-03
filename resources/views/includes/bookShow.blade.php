@@ -34,7 +34,7 @@
             </div>
             <div class="book-detail">
                 <div style="font-weight: 900; color: blue; font-size: 1.2em; margin-bottom: 0.2em">
-                    <a href="#">{!! $book->title !!}</a>
+                    <a href="{{ route('book.show', ['id' => $book->id]) }}">{!! $book->title !!}</a>
                 </div>
                 <div style="color: #008340; margin-bottom: 0.1em">{!! $book->author !!}</div>
                 <div style="margin-bottom: 0.3em"><em>{!! $book->published_at !!}</em></div>
