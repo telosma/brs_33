@@ -11,6 +11,10 @@ Route::group(['prefix' => 'book'], function () {
         'as' => 'book.show',
         'uses' => 'BookController@show',
     ]);
+    Route::group(['middleware' => 'auth'], function() {
+        Route::post('favorite', ['uses' => 'BookController@favorite', 'as' => 'book.favorite']);
+        Route::post('mark', ['uses' => 'BookController@mark', 'as' => 'book.mark']);
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
