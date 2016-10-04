@@ -4,7 +4,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::group(['prefix' => 'book'], function (){
+Route::group(['prefix' => 'book'], function () {
     Route::get('/', ['uses' => 'BookController@index', 'as' => 'book.index']);
     Route::get('category/{category}', ['uses' => 'BookController@showByCategory', 'as' => 'book.showByCategory']);
     Route::get('/{bookId}', [
@@ -14,56 +14,62 @@ Route::group(['prefix' => 'book'], function (){
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    Route::get('/', [
-        'uses' => 'HomeController@index',
-        'as' => 'admin.home',
-    ]);
-    Route::resource('category', 'CategoryController', [
-        'only' => [
-            'create',
-            'store',
-            'index',
-        ],
-    ]);
-    Route::group(['prefix' => 'category/ajax'], function() {
-        Route::get('list', ['uses' => 'CategoryController@ajaxList', 'as' => 'admin.category.ajaxList']);
-        Route::delete('delete', ['uses' => 'CategoryController@ajaxDelete', 'as' => 'admin.category.ajaxDelete']);
-        Route::post('update', ['uses' => 'CategoryController@ajaxUpdate', 'as' => 'admin.category.ajaxUpdate']);
-    });
-    Route::resource('book', 'BookController', [
-        'only' => [
-            'create',
-            'store',
-            'index',
-        ],
-    ]);
-    Route::group(['prefix' => 'book/ajax'], function() {
-        Route::get('list', ['uses' => 'BookController@ajaxList', 'as' => 'admin.book.ajaxList']);
-        Route::delete('delete', ['uses' => 'BookController@ajaxDelete', 'as' => 'admin.book.ajaxDelete']);
-        Route::post('update', ['uses' => 'BookController@ajaxUpdate', 'as' => 'admin.book.ajaxUpdate']);
-        Route::post('get-one', ['uses' => 'BookController@ajaxGetOne', 'as' => 'admin.book.ajaxGetOne']);
-    });
-    Route::get('book-request', [ 'uses' => 'BookRequestController@index', 'as' => 'admin.bookRequest.index']);
-    Route::group(['prefix' => 'book-request/ajax'], function() {
-        Route::get('list', ['uses' => 'BookRequestController@ajaxList', 'as' => 'admin.bookRequest.ajaxList']);
-        Route::delete('delete', ['uses' => 'BookRequestController@ajaxDelete', 'as' => 'admin.bookRequest.ajaxDelete']);
-        Route::post('accept', ['uses' => 'BookRequestController@ajaxAccept', 'as' => 'admin.user.ajaxAccept']);
-    });
-    Route::get('user', [ 'uses' => 'UserController@index', 'as' => 'admin.user.index']);
-    Route::group(['prefix' => 'user/ajax'], function() {
-        Route::get('list', ['uses' => 'UserController@ajaxList', 'as' => 'admin.user.ajaxList']);
-        Route::delete('delete', ['uses' => 'UserController@ajaxDelete', 'as' => 'admin.user.ajaxDelete']);
-        Route::post('update', ['uses' => 'UserController@ajaxUpdate', 'as' => 'admin.user.ajaxUpdate']);
-        Route::post('create', ['uses' => 'UserController@ajaxCreate', 'as' => 'admin.user.ajaxCreate']);
-        Route::post('resetPassword', [
-            'uses' => 'UserController@ajaxResetPassword',
-            'as' => 'admin.user.ajaxResetPassword'
+    Route::get('login', ['uses' => 'AdminController@getLogin', 'as' => 'admin.getLogin']);
+    Route::post('login', ['uses' => 'AdminController@postLogin', 'as' => 'admin.postLogin']);
+    Route::get('logout', ['uses' => 'AdminController@logout', 'as' => 'admin.logout']);
+
+    Route::group(['middleware' => 'admin'], function() {
+        Route::get('/', [
+            'uses' => 'HomeController@index',
+            'as' => 'admin.home',
         ]);
-    });
-    Route::get('review', ['uses' => 'ReviewController@index', 'as' => 'admin.review.index']);
-    Route::group(['prefix' => 'review/ajax'], function() {
-        Route::get('list', ['uses' => 'ReviewController@ajaxList', 'as' => 'admin.review.ajaxList']);
-        Route::delete('delete', ['uses' => 'ReviewController@ajaxDelete', 'as' => 'admin.review.ajaxDelete']);
+        Route::resource('category', 'CategoryController', [
+            'only' => [
+                'create',
+                'store',
+                'index',
+            ],
+        ]);
+        Route::group(['prefix' => 'category/ajax'], function() {
+            Route::get('list', ['uses' => 'CategoryController@ajaxList', 'as' => 'admin.category.ajaxList']);
+            Route::delete('delete', ['uses' => 'CategoryController@ajaxDelete', 'as' => 'admin.category.ajaxDelete']);
+            Route::post('update', ['uses' => 'CategoryController@ajaxUpdate', 'as' => 'admin.category.ajaxUpdate']);
+        });
+        Route::resource('book', 'BookController', [
+            'only' => [
+                'create',
+                'store',
+                'index',
+            ],
+        ]);
+        Route::group(['prefix' => 'book/ajax'], function() {
+            Route::get('list', ['uses' => 'BookController@ajaxList', 'as' => 'admin.book.ajaxList']);
+            Route::delete('delete', ['uses' => 'BookController@ajaxDelete', 'as' => 'admin.book.ajaxDelete']);
+            Route::post('update', ['uses' => 'BookController@ajaxUpdate', 'as' => 'admin.book.ajaxUpdate']);
+            Route::post('get-one', ['uses' => 'BookController@ajaxGetOne', 'as' => 'admin.book.ajaxGetOne']);
+        });
+        Route::get('book-request', ['uses' => 'BookRequestController@index', 'as' => 'admin.bookRequest.index']);
+        Route::group(['prefix' => 'book-request/ajax'], function() {
+            Route::get('list', ['uses' => 'BookRequestController@ajaxList', 'as' => 'admin.bookRequest.ajaxList']);
+            Route::delete('delete', ['uses' => 'BookRequestController@ajaxDelete', 'as' => 'admin.bookRequest.ajaxDelete']);
+            Route::post('accept', ['uses' => 'BookRequestController@ajaxAccept', 'as' => 'admin.user.ajaxAccept']);
+        });
+        Route::get('user', ['uses' => 'UserController@index', 'as' => 'admin.user.index']);
+        Route::group(['prefix' => 'user/ajax'], function() {
+            Route::get('list', ['uses' => 'UserController@ajaxList', 'as' => 'admin.user.ajaxList']);
+            Route::delete('delete', ['uses' => 'UserController@ajaxDelete', 'as' => 'admin.user.ajaxDelete']);
+            Route::post('update', ['uses' => 'UserController@ajaxUpdate', 'as' => 'admin.user.ajaxUpdate']);
+            Route::post('create', ['uses' => 'UserController@ajaxCreate', 'as' => 'admin.user.ajaxCreate']);
+            Route::post('resetPassword', [
+                'uses' => 'UserController@ajaxResetPassword',
+                'as' => 'admin.user.ajaxResetPassword'
+            ]);
+        });
+        Route::get('review', ['uses' => 'ReviewController@index', 'as' => 'admin.review.index']);
+        Route::group(['prefix' => 'review/ajax'], function() {
+            Route::get('list', ['uses' => 'ReviewController@ajaxList', 'as' => 'admin.review.ajaxList']);
+            Route::delete('delete', ['uses' => 'ReviewController@ajaxDelete', 'as' => 'admin.review.ajaxDelete']);
+        });
     });
 });
 

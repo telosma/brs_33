@@ -29,4 +29,13 @@ return [
         'success' => 'success',
         'fail' => 'fail',
     ],
+    'logout' => 'Logout',
+    'login' => 'Login',
+    'login' => 'Login',
+    'email' => 'Email',
+    'password' => 'Password',
+    'login' => 'Login',
+    'submit' => 'Submit',
+    'admin_login' => 'Admin login',
+    'not_the_admin' => 'You need to log in to the admin account!',
 ];
