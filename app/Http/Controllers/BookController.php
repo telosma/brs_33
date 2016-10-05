@@ -257,8 +257,8 @@ class BookController extends Controller
     public function bookAutocomplete(Request $request)
     {
         $books = Book::where('title', 'LIKE', "%{$request->input('query')}%")
-            ->take(config('book.limit_search'))
-            ->get(['title']);
+            ->get(['title'])
+            ->take(config('book.limit_search'));
 
         return response()->json($books);   
     }
@@ -329,5 +329,16 @@ class BookController extends Controller
         }
 
         return false;
+    }
+
+    public function getBookRequest()
+    {
+        $bookRequests = Auth::user()->bookRequests()->paginate(config('common.limit_show_request'));
+
+        return view('user.book_request.list', [
+            'bookRequests' => $bookRequests,
+            'bookMenu' => $this->bookMenu(null),
+            'breadcrumbs' => $this->drawBreadcrumbs(null),
+        ]);
     }
 }
