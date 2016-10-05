@@ -2,6 +2,7 @@
 
 return [
     'category_id' => 'Category',
+    'category' => 'Category',
     'choose_category' => 'Choose category...',
     'title' => 'Book title',
     'author' => 'Author',
