@@ -117,7 +117,7 @@
                             </div>
                             <div class="description-content" style="padding: 15px;">
                                 <h5 style="font-size: 1.3em; color: white;">
-                                    {{ $book->description }}
+                                    {!! $book->description !!}
                                 </h5>
                             </div>
                         </div>

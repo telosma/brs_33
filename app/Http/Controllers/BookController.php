@@ -324,8 +324,8 @@ class BookController extends Controller
     }
 
     protected function avgRate (Book $book) {
-        if ($book->update(['avg_rate_point' => $book->rates()->avg('point')])) {
-            return ceil($book->avg_rate_point);
+        if ($book->update(['avg_rate_point' => ceil($book->rates()->avg('point'))])) {
+            return $book->avg_rate_point;
         }
 
         return false;
