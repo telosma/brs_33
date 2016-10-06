@@ -330,4 +330,15 @@ class BookController extends Controller
 
         return false;
     }
+
+    public function getBookRequest()
+    {
+        $bookRequests = Auth::user()->bookRequests()->paginate(config('common.limit_show_request'));
+
+        return view('user.book_request.list', [
+            'bookRequests' => $bookRequests,
+            'bookMenu' => $this->bookMenu(null),
+            'breadcrumbs' => $this->drawBreadcrumbs(null),
+        ]);
+    }
 }
