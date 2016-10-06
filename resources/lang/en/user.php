@@ -64,6 +64,8 @@ return [
     'cancel' => 'Cancel',
     'yes' => 'Yes',
     'comment' => [
+        'edit' => 'Edit',
+        'delete' => 'Delete',
         'confirm_delete' => 'Are you sure want to delete this comment',
         'cannot_delete' => 'Cannot delete this comment',
     ],
